@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kit 5 · MPASI Academy — NutriCode MPASI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF5EE; --surface:#FFFDF9; --ink:#3B2E26; --ink-soft:#6B5D52;
+  --terra:#C0674A; --terra-deep:#9E4F36; --terra-tint:#F6EAE3;
+  --sage:#7D8C6F; --sage-deep:#5E6D52; --sage-tint:#EEF1E8;
+  --gold:#C9A227; --gold-deep:#A8871D; --gold-tint:#F7F0DC;
+  --amber:#C98B2D; --amber-tint:#F9F0DE;
+  --danger:#B3402F; --danger-tint:#F7E8E4;
+  --line:#E8DFD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;font-size:15.5px;-webkit-text-size-adjust:100%;min-height:100dvh}
+::selection{background:var(--gold-tint)}
+:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.hdr{background:
+  radial-gradient(900px 300px at 90% -40%, var(--gold-tint), transparent 60%),
+  radial-gradient(700px 260px at -5% 130%, var(--sage-tint), transparent 55%),
+  var(--surface);
+  border-bottom:1px solid var(--line);padding:34px 0 0}
+.shell{max-width:1000px;margin:0 auto;padding:0 40px}
+.hdr .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold)}
+.hdr .eyebrow::before{content:"";width:28px;height:2px;background:var(--gold)}
+.hdr h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.1;margin-top:10px}
+.hdr h1 em{font-style:italic;font-weight:600;color:var(--terra)}
+.hdr .sub{color:var(--ink-soft);font-size:14.5px;margin-top:10px;max-width:64ch}
+.hdr .brand{font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--terra-deep);margin-top:14px}
+.tabs{display:flex;gap:6px;margin-top:22px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 20px;border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:800;color:var(--ink-soft);cursor:pointer;border-bottom:3px solid transparent;min-height:48px}
+.tab.on{color:var(--terra-deep);border-bottom-color:var(--terra)}
+
+.wrap{max-width:1000px;margin:0 auto;padding:26px 40px 70px}
+.view{display:none}.view.on{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:16px}
+
+/* Quiz */
+.prog{height:9px;background:#F1EAE0;border-radius:5px;overflow:hidden;margin-bottom:18px}
+.prog>div{height:100%;background:linear-gradient(90deg,var(--terra),var(--gold));width:0%;transition:width .3s}
+.qn{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.q{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(19px,2vw,24px);line-height:1.4;margin-bottom:20px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{padding:18px;background:#fff;border:2px solid var(--line);border-radius:14px;font-size:16px;font-weight:800;color:var(--ink-soft);cursor:pointer;text-align:center;font-family:inherit;min-height:56px}
+.opt:hover{border-color:var(--terra)}
+.opt.correct{background:var(--sage-tint);border-color:var(--sage-deep);color:var(--sage-deep)}
+.opt.wrong{background:var(--danger-tint);border-color:var(--danger);color:var(--danger)}
+.opt:disabled{cursor:default}
+.exp{margin-top:16px;padding:16px 18px;background:var(--gold-tint);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;font-size:14px;color:#5C4A0E;line-height:1.75;display:none}
+.exp.show{display:block}
+.exp b{color:#3F3208}
+.btn{display:block;width:100%;background:linear-gradient(135deg,var(--terra),var(--terra-deep));color:#fff;padding:15px;border-radius:12px;font-weight:800;font-size:15px;border:none;cursor:pointer;margin-top:14px;font-family:inherit;min-height:52px}
+.btn:hover{filter:brightness(1.05)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep))}
+.btn.ghost{background:var(--surface);color:var(--terra-deep);border:1.5px solid var(--terra)}
+.result{text-align:center;padding:16px 0}
+.result .big{font-size:56px}
+.result .s{font-family:'Fraunces',serif;font-weight:700;font-size:52px;color:var(--terra);margin:6px 0}
+.result .g{font-size:19px;font-weight:800;color:var(--ink)}
+.result .d{font-size:14px;color:var(--ink-soft);margin:12px auto;max-width:46ch}
+.best{font-size:12px;font-weight:800;color:var(--gold-deep);background:var(--gold-tint);display:inline-block;padding:6px 14px;border-radius:16px;margin-top:6px}
+
+/* Glossary */
+.search{margin-bottom:14px}
+.search input{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font-size:15px;font-weight:600;font-family:inherit;background:#fff;min-height:50px}
+.search input:focus{border-color:var(--terra);outline:none}
+.tcount{font-size:12.5px;color:var(--ink-soft);font-weight:700;margin-bottom:12px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:9px}
+.term h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--terra-deep);margin-bottom:4px}
+.term p{font-size:13.5px;color:#4A3E35;line-height:1.7}
+.empty{text-align:center;padding:20px;color:var(--ink-soft);font-style:italic;font-size:13.5px}
+
+/* Certificate */
+.lockmsg{text-align:center;padding:26px 18px}
+.lockmsg .ic{font-size:44px}
+.lockmsg h3{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:10px 0 8px}
+.lockmsg p{font-size:14px;color:var(--ink-soft);max-width:46ch;margin:0 auto}
+.namebox{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.namebox label{display:block;font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.namebox input{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-size:15px;font-weight:700;font-family:inherit;background:#fff;min-height:48px}
+.cert{background:linear-gradient(150deg,#FFFDF9,#FAF3E6);border:2.5px solid var(--gold);border-radius:20px;padding:clamp(26px,5vw,52px) clamp(20px,5vw,56px);text-align:center;position:relative;overflow:hidden}
+.cert::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold-deep);border-radius:14px;opacity:.45;pointer-events:none}
+.cert .cbrand{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold-deep)}
+.cert .ctitle{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:clamp(26px,4.5vw,40px);color:var(--ink);margin:14px 0 4px}
+.cert .csub{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-soft)}
+.cert .cname{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(24px,3.6vw,34px);color:var(--terra-deep);margin:24px 0 4px;border-bottom:2px solid var(--gold);display:inline-block;padding:0 22px 8px}
+.cert .cchild{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin-top:8px}
+.cert .cdesc{font-size:13.5px;color:#4A3E35;max-width:52ch;margin:18px auto;line-height:1.75}
+.cert .cmeta{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:20px}
+.cert .cm{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft)}
+.cert .cm b{display:block;font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--gold-deep);letter-spacing:0;text-transform:none;margin-top:2px}
+.cert .cseal{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin:22px auto 0;box-shadow:0 6px 18px rgba(201,162,39,.4)}
+.note{border-radius:0 12px 12px 0;padding:15px 18px;margin-top:14px;font-size:13.5px;line-height:1.7;border-left:4px solid}
+.note .nt{display:block;font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:4px}
+.n-ok{background:var(--sage-tint);border-color:var(--sage);color:#42503A}.n-ok .nt{color:var(--sage-deep)}
+.n-gold{background:var(--gold-tint);border-color:var(--gold);color:#6E5A10}.n-gold .nt{color:#8A6E12}
+
+.foot{max-width:1000px;margin:0 auto;padding:0 40px 50px;text-align:center}
+.foot .mark{font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--terra)}
+.foot .sm{font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-top:6px}
+
+@media(max-width:1080px){.shell,.wrap,.foot{padding-left:24px;padding-right:24px}}
+@media(max-width:900px){
+  .hdr{padding-top:26px}
+  .shell,.wrap,.foot{padding-left:18px;padding-right:18px}
+  .card{padding:18px}
+  .namebox{grid-template-columns:1fr}
+  .cert .cmeta{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="shell">
+    <span class="eyebrow">Kit 5 · Upgrade Ilmu Bunda</span>
+    <h1>MPASI <em>Academy</em></h1>
+    <p class="sub">Uji pemahamanmu lewat 10 soal mitos vs fakta, jelajahi glosarium 33 istilah, dan raih Sertifikat "Bunda Siap MPASI" dengan skor 80% ke atas.</p>
+    <div class="brand">NutriCode MPASI · Berbasis WHO &amp; IDAI</div>
+    <div class="tabs">
+      <button class="tab on" data-v="quiz" type="button">🎓 Quiz Mitos vs Fakta</button>
+      <button class="tab" data-v="glos" type="button">📖 Glosarium</button>
+      <button class="tab" data-v="cert" type="button">🏆 Sertifikat</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="view on" id="v-quiz"><div class="card" id="quizApp"></div></section>
+
+  <section class="view" id="v-glos">
+    <div class="search"><input type="text" id="gq" placeholder="🔍 Cari istilah: stunting, GTM, oromotor, wake window..."></div>
+    <div class="tcount" id="gcount"></div>
+    <div id="terms"></div>
+  </section>
+
+  <section class="view" id="v-cert"><div id="certArea"></div></section>
+</div>
+
+<footer class="foot">
+  <div class="mark">NutriCode MPASI</div>
+  <div class="sm">Kit 5 dari 5 · MPASI Academy</div>
+</footer>
+<script>
+(function(){
+var Q=[
+ {q:'"Bayi tidak boleh diberi protein hewani sebelum 1 tahun"',a:0,e:'❌ <b>MITOS.</b> Justru protein hewani (telur, hati, ikan, daging, ayam) WAJIB sejak MPASI pertama (6 bulan) untuk mencegah stunting & anemia — rekomendasi WHO & IDAI.'},
+ {q:'"MPASI harus dimulai dengan buah dulu, baru yang lain"',a:0,e:'❌ <b>MITOS.</b> Tidak ada urutan wajib. Yang penting MPASI lengkap sejak awal: karbo + protein hewani + lemak + sayur. Protein hewani justru prioritas utama.'},
+ {q:'"Garam & gula boleh ditambah ke MPASI biar berasa"',a:0,e:'❌ <b>MITOS.</b> Bayi <1 tahun TIDAK butuh garam & gula tambahan. Ginjal belum matang + membentuk lidah picky eater + risiko hipertensi/obesitas dini.'},
+ {q:'"Bayi yang berat badannya normal pasti tidak stunting"',a:0,e:'❌ <b>MITOS.</b> Stunting diukur dari TINGGI menurut usia (TB/U), bukan berat. Bayi bisa BB normal tapi pendek = tetap stunting. Pantau TB/U rutin di Kit 2.'},
+ {q:'"Telur bisa bikin alergi, jadi tunda sampai 1 tahun"',a:0,e:'❌ <b>MITOS.</b> Riset terbaru: pengenalan alergen dini (6 bln) justru MENURUNKAN risiko alergi. Kenalkan bertahap dengan metode 3-Day Wait (catat di Kit 3).'},
+ {q:'"Madu aman diberikan ke bayi di bawah 1 tahun"',a:0,e:'❌ <b>MITOS — dan berbahaya.</b> Madu bisa mengandung spora Clostridium botulinum penyebab botulisme bayi. Tunggu sampai anak lewat 1 tahun.'},
+ {q:'"Bubur fortifikasi (terfortifikasi zat besi) berbahaya, homemade selalu lebih baik"',a:0,e:'❌ <b>MITOS.</b> MPASI fortifikasi justru salah satu sumber zat besi yang diakui IDAI, terutama bila akses protein hewani terbatas. Kombinasikan keduanya — yang berbahaya adalah MPASI rendah zat besi.'},
+ {q:'"ASI lanjut sampai 2 tahun tetap penting meski sudah MPASI"',a:1,e:'✅ <b>FAKTA.</b> WHO merekomendasikan ASI sampai 2 tahun+ bersama MPASI. ASI tetap sumber nutrisi, antibodi & ikatan emosional.'},
+ {q:'"Tekstur MPASI harus naik bertahap, tidak boleh halus terus"',a:1,e:'✅ <b>FAKTA.</b> Lumat → cincang → makanan keluarga melatih oromotor (kemampuan mengunyah). Telat naik tekstur = penyebab GTM paling umum.'},
+ {q:'"Bayi menolak makanan baru berarti dia tidak suka, langsung ganti"',a:0,e:'❌ <b>MITOS.</b> Bayi butuh 8–15× paparan untuk menerima rasa baru. Menolak 5× artinya baru setengah jalan — tawarkan ulang tanpa drama.'}
+];
+var T=[
+ ['MPASI','Makanan Pendamping ASI — makanan selain ASI mulai usia 6 bulan untuk memenuhi kebutuhan gizi yang tidak lagi cukup dari ASI saja.'],
+ ['Stunting','Gagal tumbuh (TB/U Z-score < -2) akibat kurang gizi kronis. Berdampak pada kognitif & fisik jangka panjang. Cegah dengan protein hewani harian.'],
+ ['Protein Hewani','Protein dari hewan (telur, hati, ikan, daging, ayam, susu). Wajib tiap MPASI — sumber zat besi & asam amino lengkap pencegah stunting/anemia.'],
+ ['GTM','Gerakan Tutup Mulut — bayi menolak makan. Penyebab: bosan menu, tekstur tak sesuai, sakit, atau distraksi. Atasi dengan variasi & responsive feeding.'],
+ ['Oromotor','Kemampuan otot mulut untuk mengunyah & menelan. Dilatih lewat kenaikan tekstur bertahap & finger food.'],
+ ['Finger Food','Makanan yang bisa dipegang & dimakan sendiri oleh bayi (potongan buah lembut, ubi kukus). Melatih motorik halus & kemandirian, mulai 9 bulan.'],
+ ['Responsive Feeding','Memberi makan dengan peka pada sinyal lapar/kenyang bayi. Tidak memaksa, tidak menyuapi sambil distraksi (TV/gadget).'],
+ ['Z-score','Skor simpangan dari median standar WHO. Indikator status gizi (BB/U, TB/U, BB/TB). Normal: -2 sampai +2.'],
+ ['BB/U','Berat Badan menurut Usia — indikator berat. Z < -2 = berat kurang (underweight).'],
+ ['TB/U','Tinggi Badan menurut Usia — indikator stunting. Z < -2 = pendek/stunting.'],
+ ['BB/TB','Berat menurut Tinggi — indikator gizi akut (kurus/wasting atau gemuk).'],
+ ['Wasting','Gizi kurang akut (BB/TB rendah) — bayi terlihat kurus. Butuh penanganan segera.'],
+ ['Anemia Defisiensi Besi','Kekurangan zat besi → lemas, pucat, mengganggu kognitif. Sangat umum pada bayi. Cegah dengan hati ayam, daging merah, kuning telur.'],
+ ['3-Day Wait','Metode mengenalkan 1 makanan baru lalu menunggu 3 hari sebelum mencoba yang lain — untuk melacak sumber alergi.'],
+ ['Alergen Umum','Makanan pemicu alergi: telur, kacang, susu sapi, seafood, gandum, kedelai. Pengenalan dini & bertahap justru menurunkan risiko alergi.'],
+ ['Botulisme Bayi','Keracunan akibat spora bakteri (mis. dari madu) pada bayi <1 tahun. Alasan madu dilarang sebelum usia 1 tahun.'],
+ ['Fortifikasi','Penambahan zat gizi (mis. zat besi) ke produk makanan. MPASI fortifikasi diakui IDAI sebagai sumber zat besi pendamping.'],
+ ['Tekstur Lumat','Tekstur MPASI paling halus (puree/saring) untuk usia 6–8 bulan.'],
+ ['Tekstur Cincang','Tekstur cincang kasar/tim untuk 9–11 bulan — melatih kemampuan mengunyah.'],
+ ['Densitas Kalori','Jumlah kalori per volume makanan. MPASI harus padat gizi (tambah lemak: minyak, santan, keju) karena lambung bayi kecil.'],
+ ['Lemak Tambahan','Minyak/santan/butter/keju yang ditambahkan ke MPASI untuk menaikkan kalori & membantu penyerapan vitamin.'],
+ ['Wake Window','Durasi bayi terjaga di antara tidur. Bertambah seiring usia. Kunci mengatur jadwal & mencegah overtired (lihat Kit 1).'],
+ ['Overtired','Bayi terlalu lelah → justru susah tidur & rewel. Hindari dengan menjaga wake window.'],
+ ['Bedtime Routine','Rutinitas konsisten sebelum tidur (mandi → baca → susu → tidur) sebagai sinyal waktu tidur.'],
+ ['Milestone','Pencapaian tumbuh kembang sesuai usia (motorik, bahasa, sosial). Pantau di Kit 2 untuk deteksi dini keterlambatan.'],
+ ['SDIDTK','Stimulasi Deteksi Intervensi Dini Tumbuh Kembang — program skrining tumbuh kembang di Posyandu/Puskesmas.'],
+ ['Posyandu','Pos Pelayanan Terpadu — tempat timbang, imunisasi, & pemantauan tumbuh kembang balita gratis.'],
+ ['Imunisasi','Vaksinasi pencegah penyakit. Ikuti jadwal IDAI — infeksi berulang adalah salah satu pemicu gagal tumbuh.'],
+ ['Picky Eater','Anak pemilih makanan. Atasi: variasi, sabar 8–15× paparan, libatkan anak, makan bersama keluarga.'],
+ ['Baby Led Weaning (BLW)','Metode MPASI di mana bayi makan sendiri finger food sejak awal. Ada pro-kontra — diskusikan dengan dokter anak.'],
+ ['Kaldu MPASI','Air rebusan tulang/sayur/protein untuk mengencerkan & menambah rasa MPASI tanpa garam.'],
+ ['Zat Besi','Mineral kritis bayi 6 bln+ (cadangan lahir mulai habis). Sumber: hati, daging merah, kuning telur. Kekurangan = anemia & gangguan otak.'],
+ ['DHA / Omega-3','Asam lemak untuk perkembangan otak & mata. Sumber: ikan kembung, lele, tuna, salmon, telur.']
+];
+var KEY='nutricode_kit5';
+var state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+function saveState(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+
+// Tabs
+var tabs=document.querySelectorAll('.tab');
+tabs.forEach(function(t){t.addEventListener('click',function(){
+  tabs.forEach(function(x){x.classList.toggle('on',x===t);});
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on');});
+  document.getElementById('v-'+t.dataset.v).classList.add('on');
+  if(t.dataset.v==='cert')renderCert();
+});});
+function goTab(v){document.querySelector('.tab[data-v="'+v+'"]').click();}
+
+// ===== QUIZ =====
+var i=0,score=0,answered=false;
+var app=document.getElementById('quizApp');
+function renderQuiz(){
+  if(i>=Q.length){
+    var pct=Math.round(score/Q.length*100);
+    var passed=pct>=80;
+    if(!state.best||pct>state.best){state.best=pct;state.date=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});saveState();}
+    var g=pct>=80?'🏆 Bunda Siap MPASI!':pct>=60?'🥇 Hampir Sampai!':'🌱 Ayo Belajar Lagi';
+    app.innerHTML='<div class="result"><div class="big">🎓</div><div class="s">'+score+'/'+Q.length+'</div><div class="g">'+g+'</div>'+
+    '<div class="d">'+pct+'% benar. '+(passed?'Skor kamu membuka <b>Sertifikat Bunda Siap MPASI</b> — klaim sekarang!':'Butuh 80% untuk membuka sertifikat. Baca lagi bab terkait di ebook NutriCode, lalu coba lagi — kamu pasti bisa.')+'</div>'+
+    (state.best?'<div class="best">Skor terbaik: '+state.best+'%</div>':'')+
+    (passed?'<button class="btn gold" id="toCert" type="button">🏆 Klaim Sertifikat</button>':'')+
+    '<button class="btn'+(passed?' ghost':'')+'" id="retry" type="button">🔄 Ulangi Quiz</button></div>';
+    document.getElementById('retry').addEventListener('click',function(){i=0;score=0;renderQuiz();});
+    if(passed)document.getElementById('toCert').addEventListener('click',function(){goTab('cert');});
+    return;
+  }
+  var qq=Q[i];answered=false;
+  app.innerHTML='<div class="prog"><div style="width:'+(i/Q.length*100)+'%"></div></div>'+
+  '<div class="qn">Soal '+(i+1)+' dari '+Q.length+(state.best?' · skor terbaik '+state.best+'%':'')+'</div>'+
+  '<div class="q">'+qq.q+'</div>'+
+  '<div class="opts"><button class="opt" data-j="0" type="button">Mitos</button><button class="opt" data-j="1" type="button">Fakta</button></div>'+
+  '<div class="exp" id="exp"></div>';
+  [].forEach.call(app.querySelectorAll('.opt'),function(o){
+    o.addEventListener('click',function(){
+      if(answered)return;answered=true;
+      var j=+o.dataset.j,opts=app.querySelectorAll('.opt');
+      opts[qq.a].classList.add('correct');
+      if(j!==qq.a)o.classList.add('wrong');else score++;
+      [].forEach.call(opts,function(x){x.disabled=true;});
+      var e=document.getElementById('exp');
+      e.innerHTML=qq.e+'<button class="btn" id="next" type="button">'+(i===Q.length-1?'🏁 Lihat Hasil':'➡️ Lanjut')+'</button>';
+      e.classList.add('show');
+      document.getElementById('next').addEventListener('click',function(){i++;renderQuiz();});
+    });
+  });
+}
+
+// ===== GLOSSARY =====
+function renderGlos(){
+  var q=document.getElementById('gq').value.toLowerCase();
+  var list=T.filter(function(t){return t[0].toLowerCase().indexOf(q)>-1||t[1].toLowerCase().indexOf(q)>-1;});
+  document.getElementById('gcount').textContent=list.length+' dari '+T.length+' istilah';
+  document.getElementById('terms').innerHTML=list.length?list.map(function(t){
+    return '<div class="term"><h3>'+t[0]+'</h3><p>'+t[1]+'</p></div>';
+  }).join(''):'<div class="empty">Tidak ada istilah yang cocok</div>';
+}
+document.getElementById('gq').addEventListener('input',renderGlos);
+
+// ===== CERTIFICATE =====
+function renderCert(){
+  var area=document.getElementById('certArea');
+  if(!state.best||state.best<80){
+    area.innerHTML='<div class="card"><div class="lockmsg"><div class="ic">🔒</div><h3>Sertifikat Masih Terkunci</h3>'+
+    '<p>Raih skor <b>80% ke atas</b> di Quiz Mitos vs Fakta untuk membuka Sertifikat "Bunda Siap MPASI".'+(state.best?' Skor terbaikmu saat ini: <b>'+state.best+'%</b> — tinggal sedikit lagi!':'')+'</p>'+
+    '<button class="btn" id="goQuiz" type="button" style="max-width:280px;margin:18px auto 0">🎓 Kerjakan Quiz Sekarang</button></div></div>';
+    document.getElementById('goQuiz').addEventListener('click',function(){goTab('quiz');});
+    return;
+  }
+  area.innerHTML='<div class="card"><div class="namebox">'+
+  '<div><label for="cn">Nama Bunda</label><input type="text" id="cn" placeholder="mis. Bunda Ratna" value="'+(state.name||'')+'"></div>'+
+  '<div><label for="cc">Nama Anak (opsional)</label><input type="text" id="cc" placeholder="mis. Arka" value="'+(state.child||'')+'"></div>'+
+  '</div></div>'+
+  '<div class="cert" id="certCard">'+
+  '<div class="cbrand">NutriCode MPASI · Berbasis WHO &amp; IDAI</div>'+
+  '<div class="ctitle">Sertifikat</div>'+
+  '<div class="csub">Bunda Siap MPASI</div>'+
+  '<div class="cname" id="certName">'+(state.name||'Nama Bunda')+'</div>'+
+  '<div class="cchild" id="certChild">'+(state.child?'Bunda dari '+state.child:'')+'</div>'+
+  '<div class="cdesc">Telah menuntaskan Quiz Mitos vs Fakta MPASI Academy dan membuktikan pemahaman prinsip MPASI adekuat, protein hewani anti-stunting, serta praktik makan responsif untuk 1000 hari pertama buah hati.</div>'+
+  '<div class="cmeta"><div class="cm">Skor<b id="certScore">'+state.best+'%</b></div><div class="cm">Tanggal<b>'+(state.date||'')+'</b></div><div class="cm">Kit<b>MPASI Academy</b></div></div>'+
+  '<div class="cseal">✓</div>'+
+  '</div>'+
+  '<button class="btn gold" id="dlCert" type="button" style="margin-top:14px">⬇️ Download Sertifikat</button>'+
+  '<div class="note n-gold"><span class="nt">Bagikan Pencapaianmu</span>Download sertifikatnya lalu bagikan ke Instagram/WhatsApp Story — tandai perjalanan 1000 hari pertama buah hatimu. 💛</div>'+
+  '<div class="note n-ok"><span class="nt">Langkah Selanjutnya</span>Ilmu sudah lulus uji — sekarang eksekusi: susun rutinitas di <b>Kit 1</b>, pantau pertumbuhan bulanan di <b>Kit 2</b>, dan rencanakan menu minggu ini di <b>Kit 3</b>.</div>';
+  var cn=document.getElementById('cn'),cc=document.getElementById('cc');
+  cn.addEventListener('input',function(){state.name=cn.value;saveState();document.getElementById('certName').textContent=cn.value||'Nama Bunda';});
+  cc.addEventListener('input',function(){state.child=cc.value;saveState();document.getElementById('certChild').textContent=cc.value?'Bunda dari '+cc.value:'';});
+  document.getElementById('dlCert').addEventListener('click',downloadCert);
+}
+
+// ===== CANVAS CERTIFICATE (PNG 1080x1350, 4:5) =====
+function downloadCert(){
+  var W=1080,H=1350;
+  var cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  var x=cv.getContext('2d');
+  var GOLD='#C9A227',GOLDD='#A8871D',INK='#3B2E26',SOFT='#6B5D52',TERRA='#9E4F36',BODY='#4A3E35';
+  function draw(){
+    // background gradient (cream editorial)
+    var g=x.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#FFFDF9');g.addColorStop(1,'#FAF3E6');
+    x.fillStyle=g;x.fillRect(0,0,W,H);
+    // soft corner glows
+    var r1=x.createRadialGradient(W*0.9,H*0.06,0,W*0.9,H*0.06,520);
+    r1.addColorStop(0,'rgba(246,234,227,.85)');r1.addColorStop(1,'rgba(246,234,227,0)');
+    x.fillStyle=r1;x.fillRect(0,0,W,H);
+    var r2=x.createRadialGradient(W*0.08,H*0.96,0,W*0.08,H*0.96,520);
+    r2.addColorStop(0,'rgba(238,241,232,.85)');r2.addColorStop(1,'rgba(238,241,232,0)');
+    x.fillStyle=r2;x.fillRect(0,0,W,H);
+    // double border
+    x.strokeStyle=GOLD;x.lineWidth=7;x.strokeRect(28,28,W-56,H-56);
+    x.strokeStyle='rgba(168,135,29,.5)';x.lineWidth=2;x.strokeRect(52,52,W-104,H-104);
+    x.textAlign='center';
+    function fam(w,s,f){return w+' '+s+'px '+f+', '+(f==='Fraunces'?'Georgia, serif':'Arial, sans-serif');}
+    function spaced(t,y,size,color,ls,weight,f){
+      x.fillStyle=color;x.font=fam(weight||'800',size,f||'"Plus Jakarta Sans"');
+      var total=0,ws=[];
+      for(var i=0;i<t.length;i++){var w=x.measureText(t[i]).width+ls;ws.push(w);total+=w;}
+      var cx=W/2-total/2;
+      for(var j=0;j<t.length;j++){x.textAlign='left';x.fillText(t[j],cx,y);cx+=ws[j];}
+      x.textAlign='center';
+    }
+    // brand
+    spaced('NUTRICODE MPASI · BERBASIS WHO & IDAI',150,22,GOLDD,7);
+    // title
+    x.fillStyle=INK;x.font='italic '+fam('700',96,'Fraunces');
+    x.fillText('Sertifikat',W/2,278);
+    spaced('BUNDA SIAP MPASI',336,26,SOFT,6);
+    // name
+    var name=(state.name||'Nama Bunda');
+    x.fillStyle=TERRA;
+    var ns=76;x.font=fam('600',ns,'Fraunces');
+    while(x.measureText(name).width>W-260&&ns>36){ns-=4;x.font=fam('600',ns,'Fraunces');}
+    x.fillText(name,W/2,478);
+    var nw=Math.min(x.measureText(name).width+90,W-220);
+    x.strokeStyle=GOLD;x.lineWidth=4;
+    x.beginPath();x.moveTo(W/2-nw/2,512);x.lineTo(W/2+nw/2,512);x.stroke();
+    if(state.child){x.fillStyle=SOFT;x.font=fam('700',27,'"Plus Jakarta Sans"');x.fillText('Bunda dari '+state.child,W/2,566);}
+    // description (wrapped)
+    var desc='Telah menuntaskan Quiz Mitos vs Fakta MPASI Academy dan membuktikan pemahaman prinsip MPASI adekuat, protein hewani anti-stunting, serta praktik makan responsif untuk 1000 hari pertama buah hati.';
+    x.fillStyle=BODY;x.font=fam('500',28,'"Plus Jakarta Sans"');
+    var words=desc.split(' '),line='',lines=[];
+    words.forEach(function(w){var t=line?line+' '+w:w;if(x.measureText(t).width>W-320){lines.push(line);line=w;}else line=t;});
+    if(line)lines.push(line);
+    var dy=state.child?660:640;
+    lines.forEach(function(l,i2){x.fillText(l,W/2,dy+i2*46);});
+    // meta row
+    var my=dy+lines.length*46+80;
+    var cols=[['SKOR',(state.best||0)+'%'],['TANGGAL',state.date||''],['KIT','MPASI Academy']];
+    var cw=(W-280)/3;
+    cols.forEach(function(c2,i3){
+      var cx2=140+cw*i3+cw/2;
+      x.fillStyle=SOFT;x.font=fam('800',20,'"Plus Jakarta Sans"');
+      var t2=c2[0].split('').join(String.fromCharCode(8202));
+      x.fillText(t2,cx2,my);
+      x.fillStyle=GOLDD;x.font=fam('600',34,'Fraunces');
+      x.fillText(c2[1],cx2,my+48);
+    });
+    // seal
+    var sy=my+170;
+    var sg=x.createLinearGradient(W/2-60,sy-60,W/2+60,sy+60);
+    sg.addColorStop(0,GOLD);sg.addColorStop(1,GOLDD);
+    x.fillStyle=sg;x.beginPath();x.arc(W/2,sy,58,0,Math.PI*2);x.fill();
+    x.strokeStyle='#fff';x.lineWidth=9;x.lineCap='round';x.lineJoin='round';
+    x.beginPath();x.moveTo(W/2-24,sy+2);x.lineTo(W/2-6,sy+20);x.lineTo(W/2+28,sy-18);x.stroke();
+    // footer
+    spaced('KIT 5 DARI 5 · MPASI ACADEMY',H-92,19,SOFT,5);
+    // export
+    var name2=(state.name||'bunda').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'bunda';
+    var a=document.createElement('a');
+    a.download='sertifikat-bunda-siap-mpasi-'+name2+'.png';
+    a.href=cv.toDataURL('image/png');
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+  }
+  // pastikan font custom siap sebelum menggambar; fallback tetap jalan bila gagal
+  try{
+    if(document.fonts&&document.fonts.load){
+      Promise.all([
+        document.fonts.load('italic 700 96px Fraunces'),
+        document.fonts.load('600 76px Fraunces'),
+        document.fonts.load('800 22px "Plus Jakarta Sans"'),
+        document.fonts.load('500 28px "Plus Jakarta Sans"')
+      ]).then(draw,draw);
+    }else draw();
+  }catch(e){draw();}
+}
+
+renderQuiz();renderGlos();
+})();
+</script>
+</body></html>
