@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kit 1 · Daily Command Center — MPASI Cegah Stunting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF5EE; --surface:#FFFDF9; --ink:#3B2E26; --ink-soft:#6B5D52;
+  --terra:#C0674A; --terra-deep:#9E4F36; --terra-tint:#F6EAE3;
+  --sage:#7D8C6F; --sage-deep:#5E6D52; --sage-tint:#EEF1E8;
+  --gold:#C9A227; --gold-tint:#F7F0DC;
+  --amber:#C98B2D; --amber-tint:#F9F0DE;
+  --danger:#B3402F; --danger-tint:#F7E8E4;
+  --line:#E8DFD2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;font-size:15.5px;-webkit-text-size-adjust:100%;min-height:100dvh}
+::selection{background:var(--gold-tint)}
+:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Header */
+.hdr{background:
+  radial-gradient(900px 300px at 90% -40%, var(--terra-tint), transparent 60%),
+  radial-gradient(700px 260px at -5% 130%, var(--sage-tint), transparent 55%),
+  var(--surface);
+  border-bottom:1px solid var(--line);padding:34px 0 30px}
+.shell{max-width:1240px;margin:0 auto;padding:0 40px}
+.hdr .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold)}
+.hdr .eyebrow::before{content:"";width:28px;height:2px;background:var(--gold)}
+.hdr h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.1;margin-top:10px}
+.hdr h1 em{font-style:italic;font-weight:600;color:var(--terra)}
+.hdr .sub{color:var(--ink-soft);font-size:14.5px;margin-top:10px;max-width:64ch}
+.hdr .brand{font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--terra-deep);margin-top:14px}
+
+/* Layout */
+.layout{max-width:1240px;margin:0 auto;padding:30px 40px 70px;display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start}
+.side{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h2{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin-bottom:14px}
+.card h2 .kn{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+
+/* Profil form */
+label{display:block;font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+input,select{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;font-weight:700;color:var(--ink);font-family:inherit;background:#fff;min-height:48px}
+input:focus,select:focus{border-color:var(--terra);outline:none}
+.row{margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stagechips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.schip{padding:11px 8px;border:1.5px solid var(--line);background:#fff;border-radius:12px;text-align:center;font-size:12.5px;font-weight:800;color:var(--ink-soft);cursor:pointer;min-height:48px;display:flex;align-items:center;justify-content:center}
+.schip.on{background:var(--terra);border-color:var(--terra-deep);color:#fff}
+.stagename{margin-top:12px;font-size:12.5px;color:var(--sage-deep);font-weight:700;background:var(--sage-tint);border-radius:10px;padding:9px 13px}
+
+/* Summary stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.st{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 16px;text-align:center;position:relative;overflow:hidden}
+.st::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--terra),var(--gold))}
+.st .l{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft)}
+.st .v{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(19px,1.6vw,24px);color:var(--terra-deep);margin-top:6px;line-height:1.2}
+.st .s{font-size:11px;color:var(--ink-soft);font-weight:600;margin-top:3px}
+.st.sleep .v{color:var(--sage-deep)}
+.st.sleep::after{background:linear-gradient(90deg,var(--sage),var(--gold))}
+
+/* Timeline */
+.tl{margin-top:4px}
+.tl-row{display:flex;gap:14px;padding:13px 4px;border-bottom:1px solid var(--line);align-items:flex-start}
+.tl-row:last-child{border-bottom:none}
+.tl-time{flex-shrink:0;font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--ink);min-width:52px;padding-top:2px}
+.tl-tag{flex-shrink:0;font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;margin-top:2px;min-width:64px;text-align:center}
+.tg-makan{background:var(--terra-tint);color:var(--terra-deep)}
+.tg-tidur{background:var(--sage-tint);color:var(--sage-deep)}
+.tg-asi{background:var(--gold-tint);color:#8A6E12}
+.tg-snack{background:var(--amber-tint);color:#8A5D14}
+.tg-rutin{background:#EFE9E0;color:var(--ink-soft)}
+.tl-desc{font-size:13.5px;color:#4A3E35;line-height:1.6}
+.tl-desc b{color:var(--ink)}
+
+/* Notes */
+.note{border-radius:0 12px 12px 0;padding:15px 18px;margin-top:14px;font-size:13.5px;line-height:1.7;border-left:4px solid}
+.note .nt{display:block;font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:4px}
+.n-ok{background:var(--sage-tint);border-color:var(--sage);color:#42503A}.n-ok .nt{color:var(--sage-deep)}
+.n-warn{background:var(--amber-tint);border-color:var(--amber);color:#6E4E1C}.n-warn .nt{color:var(--amber)}
+.n-danger{background:var(--danger-tint);border-color:var(--danger);color:#6E2A1F}.n-danger .nt{color:var(--danger)}
+.n-gold{background:var(--gold-tint);border-color:var(--gold);color:#6E5A10}.n-gold .nt{color:#8A6E12}
+
+.foot{max-width:1240px;margin:0 auto;padding:0 40px 50px;text-align:center}
+.foot .mark{font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--terra)}
+.foot .sm{font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-top:6px}
+
+/* Responsive */
+@media(max-width:1080px){.shell,.layout,.foot{padding-left:24px;padding-right:24px}}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;gap:16px;padding-top:20px}
+  .side{position:static}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hdr{padding:26px 0 24px}
+  .shell,.layout,.foot{padding-left:18px;padding-right:18px}
+  .card{padding:18px}
+  .tl-row{gap:10px}
+  .tl-time{min-width:46px;font-size:14px}
+  .tl-tag{min-width:56px}
+}
+@media(max-width:380px){.stagechips{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="shell">
+    <span class="eyebrow">Kit 1 · Dipakai Setiap Hari</span>
+    <h1>Daily <em>Command Center</em></h1>
+    <p class="sub">Satu profil bayi — jadwal makan, jadwal tidur, dan kebutuhan kalori harian langsung tersusun otomatis dalam satu layar.</p>
+    <div class="brand">MPASI Cegah Stunting · Berbasis WHO &amp; IDAI</div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="side">
+    <div class="card">
+      <h2><span class="kn">Langkah 1</span>👶 Profil Bayi</h2>
+      <div class="grid2">
+        <div class="row"><label for="age">Usia (bulan)</label><input type="number" id="age" min="6" max="24" value="9" inputmode="numeric"></div>
+        <div class="row"><label for="bb">Berat (kg)</label><input type="number" id="bb" min="3" max="20" step="0.1" value="8.5" inputmode="decimal"></div>
+      </div>
+      <div class="row"><label for="asi">Masih ASI / Sufor?</label>
+        <select id="asi"><option value="1">🤱 Ya, masih ASI/Sufor</option><option value="0">Tidak (sudah lepas)</option></select>
+      </div>
+      <label>Tahap Usia</label>
+      <div class="stagechips" id="chips"></div>
+      <div class="stagename" id="stagename"></div>
+    </div>
+    <div class="note n-gold" style="margin-top:0"><span class="nt">Aturan Emas Cegah Stunting</span>Apapun usianya: <b>protein hewani wajib hadir setiap kali makan</b> (telur, hati ayam, ikan, daging) — kunci pencegahan stunting &amp; anemia.</div>
+  </aside>
+
+  <main>
+    <div class="stats" id="stats"></div>
+
+    <div class="card" style="margin-top:16px">
+      <h2><span class="kn">Langkah 2</span>🕐 Timeline Harian Terpadu</h2>
+      <div class="tl" id="tl"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h2><span class="kn">Langkah 3</span>📌 Panduan Tahap Ini</h2>
+      <div id="notes"></div>
+      <div class="note n-danger"><span class="nt">Catatan Penting</span>Semua angka adalah <b>estimasi skrining</b>, bukan diagnosis. Sisa kebutuhan energi dipenuhi ASI/Sufor. Untuk kondisi khusus (BB sulit naik, lahir prematur, alergi berat), selalu konsultasikan ke dokter anak.</div>
+    </div>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="mark">MPASI Cegah Stunting</div>
+  <div class="sm">Kit 1 dari 5 · Daily Command Center</div>
+</footer>
+<script>
+(function(){
+var STAGES={
+ 'A':{label:'6–8 bln',min:6,max:8,name:'Tahap Pengenalan — tekstur lumat/saring, porsi kecil naik bertahap',
+   mealFreq:'2–3× + snack',porsi:'2–3 sdm → ½ mangkok',porsiS:'±125 ml',tekstur:'Lumat / saring',
+   sleep:'14–15 jam',naps:'3× nap',night:'10–11 jam',ww:'1,5–2 jam',pctAsi:0.3,pctNo:0.6,
+   tl:[
+    ['06:00','asi','<b>Bangun + ASI/Sufor</b> — awali hari dengan menyusu'],
+    ['08:00','tidur','<b>Nap 1</b> (±45–60 menit)'],
+    ['09:30','makan','<b>MPASI 1:</b> bubur saring 2–3 sdm (naik bertahap) + <b>protein hewani</b>. Tekstur halus/lumat.'],
+    ['12:00','tidur','<b>Nap 2</b> + ASI/Sufor setelah bangun'],
+    ['15:00','snack','<b>Snack:</b> buah lumat (pisang/alpukat) 1–2 sdt — opsional'],
+    ['16:00','tidur','<b>Nap 3</b> (singkat, ±30–45 menit)'],
+    ['17:30','makan','<b>MPASI 2:</b> bubur saring + <b>protein hewani</b> (telur/hati/ikan)'],
+    ['18:30','rutin','<b>Mandi + ASI</b> — mulai bedtime routine yang konsisten'],
+    ['19:30','tidur','<b>Tidur malam</b> (10–11 jam)']],
+   notes:[
+    ['ok','Fokus Tahap Ini','Frekuensi 2–3× makan + 1–2× snack. Porsi mulai 2–3 sdm, naik sampai ½ mangkok (125 ml). ASI/Sufor tetap on demand. Kenalkan 1 bahan baru tiap 3 hari (3-Day Wait — catat di Kit 3).'],
+    ['warn','Wake Window 1,5–2 Jam','Bayi usia ini cepat lelah. Jaga jarak bangun-tidur agar tidak overtired — bayi overtired justru makin susah tidur & rewel saat makan.']]},
+ 'B':{label:'9–11 bln',min:9,max:11,name:'Tahap Naik Tekstur — cincang kasar/tim + mulai finger food',
+   mealFreq:'3–4× + snack',porsi:'½ mangkok',porsiS:'±125 ml',tekstur:'Cincang / tim',
+   sleep:'13–14 jam',naps:'2× nap',night:'±11 jam',ww:'2,5–3 jam',pctAsi:0.5,pctNo:0.75,
+   tl:[
+    ['06:30','asi','<b>Bangun + ASI/Sufor</b>'],
+    ['08:00','makan','<b>Sarapan:</b> bubur tim/cincang ½ mangkok + <b>protein hewani</b> + sayur'],
+    ['09:30','tidur','<b>Nap 1</b> (±1–1,5 jam)'],
+    ['11:00','snack','<b>Snack:</b> finger food (buah potong lembut, ubi kukus) — latih makan sendiri'],
+    ['12:30','makan','<b>Makan siang:</b> nasi tim ½ mangkok + lauk <b>protein hewani</b> + sayur'],
+    ['13:30','tidur','<b>Nap 2</b> (±1–1,5 jam)'],
+    ['15:30','asi','<b>ASI/Sufor + snack</b> ringan'],
+    ['18:00','makan','<b>Makan malam:</b> nasi tim/cincang + <b>protein hewani</b> + sayur'],
+    ['19:00','rutin','<b>Mandi + bedtime routine</b> (baca buku → susu → tidur)'],
+    ['19:30','tidur','<b>Tidur malam</b> (±11 jam)']],
+   notes:[
+    ['ok','Fokus Tahap Ini','Naik tekstur ke cincang kasar/tim — TIDAK disaring lagi. Mulai finger food untuk latih motorik & kemandirian. Variasikan menu, kenalkan banyak rasa.'],
+    ['warn','Jangan Telat Naik Tekstur','Masih memberi puree halus di usia 10–11 bulan karena "takut keselek" = melewatkan latihan mengunyah (oromotor). Telat naik tekstur adalah penyebab GTM paling umum.']]},
+ 'C':{label:'12–17 bln',min:12,max:17,name:'Makanan Keluarga — transisi ke 1 nap & menu keluarga',
+   mealFreq:'3–4× + snack',porsi:'¾–1 mangkok',porsiS:'175–250 ml',tekstur:'Menu keluarga',
+   sleep:'12–14 jam',naps:'1–2× nap',night:'11–12 jam',ww:'3–4 jam',pctAsi:0.7,pctNo:0.95,
+   tl:[
+    ['07:00','asi','<b>Bangun + ASI/susu</b>'],
+    ['07:30','makan','<b>Sarapan:</b> nasi + lauk keluarga (potong kecil) ¾ mangkok + <b>protein hewani</b>'],
+    ['10:00','snack','<b>Snack:</b> buah potong / roti / puding tanpa gula tambahan'],
+    ['12:30','makan','<b>Makan siang:</b> menu keluarga rendah garam/gula ¾–1 mangkok'],
+    ['13:30','tidur','<b>Nap siang</b> (1–2 jam)'],
+    ['15:30','snack','<b>ASI/susu + snack</b>'],
+    ['18:00','makan','<b>Makan malam:</b> menu keluarga + sayur + <b>protein hewani</b>'],
+    ['19:30','rutin','<b>Bedtime routine</b> — susu selesai SEBELUM tidur, bukan sambil tidur (cegah gigi rusak)'],
+    ['20:00','tidur','<b>Tidur malam</b> (11–12 jam)']],
+   notes:[
+    ['ok','Fokus Tahap Ini','Anak makan menu keluarga (potong kecil). Latih makan sendiri pakai sendok — berantakan itu bagian belajar. ASI lanjut sampai 2 tahun.'],
+    ['danger','Batasi Gula & Garam','Di bawah 2 tahun tidak perlu gula/garam tambahan. Ginjal belum matang + lidah yang terbiasa manis-asin = bibit picky eater & risiko obesitas/hipertensi dini.']]},
+ 'D':{label:'18–24 bln',min:18,max:24,name:'Makanan Keluarga Lanjut — 1 nap stabil, makan makin mandiri',
+   mealFreq:'3–4× + snack',porsi:'¾–1 mangkok',porsiS:'175–250 ml',tekstur:'Menu keluarga',
+   sleep:'12–14 jam',naps:'1× nap',night:'11–12 jam',ww:'5–6 jam',pctAsi:0.7,pctNo:0.95,
+   tl:[
+    ['07:00','rutin','<b>Bangun</b> — buka tirai, sapa dengan ceria'],
+    ['07:30','makan','<b>Sarapan:</b> nasi/roti + <b>protein hewani</b> (telur favorit usia ini) + buah'],
+    ['10:00','snack','<b>Snack:</b> buah potong / finger food'],
+    ['12:00','makan','<b>Makan siang:</b> menu keluarga ¾–1 mangkok, makan bersama di meja'],
+    ['13:00','tidur','<b>Nap siang</b> (1,5–2 jam) — satu-satunya nap'],
+    ['15:30','snack','<b>Snack + ASI/susu</b>'],
+    ['18:00','makan','<b>Makan malam:</b> menu keluarga + sayur + <b>protein hewani</b>'],
+    ['19:30','rutin','<b>Bedtime routine</b> konsisten — mandi, baca buku, redupkan lampu'],
+    ['20:00','tidur','<b>Tidur malam</b> (11–12 jam)']],
+   notes:[
+    ['ok','Fokus Tahap Ini','1 nap siang stabil, wake window 5–6 jam. Rutinitas tidur konsisten penting untuk regulasi emosi & tumbuh kembang. Ajak makan bersama keluarga — anak belajar dengan meniru.'],
+    ['warn','Fase Rawan Picky Eater','Anak menolak makanan baru itu normal — butuh 8–15× paparan sebelum menerima rasa baru. Tawarkan ulang tanpa drama, jangan menyerah di percobaan kedua.']]}
+};
+var KEY='cegahstunting_kit1_profile';
+var ageEl=document.getElementById('age'),bbEl=document.getElementById('bb'),asiEl=document.getElementById('asi');
+var chipsEl=document.getElementById('chips');
+var order=['A','B','C','D'];
+order.forEach(function(k){
+  var d=document.createElement('button');d.type='button';d.className='schip';d.textContent=STAGES[k].label;d.dataset.k=k;
+  d.addEventListener('click',function(){
+    var st=STAGES[k];var a=+ageEl.value||0;
+    if(a<st.min||a>st.max){ageEl.value=st.min;}
+    render();
+  });
+  chipsEl.appendChild(d);
+});
+function stageOf(a){if(a<9)return'A';if(a<12)return'B';if(a<18)return'C';return'D';}
+function fmt(n){return n.toLocaleString('id-ID');}
+function render(){
+  var age=Math.min(24,Math.max(6,+ageEl.value||9));
+  var bb=Math.min(20,Math.max(3,+bbEl.value||8.5));
+  var asi=asiEl.value==='1';
+  var k=stageOf(age),st=STAGES[k];
+  [].forEach.call(chipsEl.children,function(c){c.classList.toggle('on',c.dataset.k===k);});
+  document.getElementById('stagename').textContent='✓ '+st.name;
+  var totalKcal=Math.round(bb*88);
+  var mpasiKcal=Math.round(totalKcal*(asi?st.pctAsi:st.pctNo));
+  var protein=Math.round(bb*1.5);
+  document.getElementById('stats').innerHTML=
+    '<div class="st"><div class="l">Total Energi</div><div class="v">'+fmt(totalKcal)+'</div><div class="s">kcal / hari (±80–100/kg)</div></div>'+
+    '<div class="st"><div class="l">Dari MPASI</div><div class="v">'+fmt(mpasiKcal)+'</div><div class="s">kcal — sisanya ASI/Sufor</div></div>'+
+    '<div class="st"><div class="l">Protein</div><div class="v">'+protein+' g</div><div class="s">per hari, utamakan hewani</div></div>'+
+    '<div class="st"><div class="l">Frekuensi</div><div class="v">'+st.mealFreq+'</div><div class="s">porsi '+st.porsi+'</div></div>'+
+    '<div class="st"><div class="l">Tekstur</div><div class="v">'+st.tekstur+'</div><div class="s">'+st.porsiS+' / makan</div></div>'+
+    '<div class="st sleep"><div class="l">Total Tidur</div><div class="v">'+st.sleep+'</div><div class="s">'+st.naps+' · malam '+st.night+' · WW '+st.ww+'</div></div>';
+  var TAG={makan:['tg-makan','Makan'],tidur:['tg-tidur','Tidur'],asi:['tg-asi','ASI'],snack:['tg-snack','Snack'],rutin:['tg-rutin','Rutin']};
+  document.getElementById('tl').innerHTML=st.tl.map(function(r){
+    var t=TAG[r[1]];
+    return '<div class="tl-row"><span class="tl-time">'+r[0]+'</span><span class="tl-tag '+t[0]+'">'+t[1]+'</span><span class="tl-desc">'+r[2]+'</span></div>';
+  }).join('');
+  document.getElementById('notes').innerHTML=st.notes.map(function(n){
+    return '<div class="note n-'+n[0]+'"><span class="nt">'+n[1]+'</span>'+n[2]+'</div>';
+  }).join('');
+  try{localStorage.setItem(KEY,JSON.stringify({age:age,bb:bb,asi:asiEl.value}));}catch(e){}
+}
+try{
+  var saved=JSON.parse(localStorage.getItem(KEY)||'null');
+  if(saved){ageEl.value=saved.age;bbEl.value=saved.bb;asiEl.value=saved.asi;}
+}catch(e){}
+ageEl.addEventListener('input',render);
+bbEl.addEventListener('input',render);
+asiEl.addEventListener('change',render);
+render();
+})();
+</script>
+</body></html>

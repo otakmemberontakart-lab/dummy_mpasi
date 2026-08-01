@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MPASI Cegah Stunting — Panduan Lengkap 6–24 Bulan + Stimulasi Tumbuh Kembang, Berbasis WHO &amp; IDAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF5EE; --surface:#FFFDF9; --ink:#3B2E26; --ink-soft:#6B5D52;
+  --terra:#C0674A; --terra-deep:#9E4F36; --terra-tint:#F6EAE3;
+  --sage:#7D8C6F; --sage-deep:#5E6D52; --sage-tint:#EEF1E8;
+  --gold:#C9A227; --gold-soft:#E5D9B4;
+  --danger:#B3402F; --danger-tint:#F7E8E4;
+  --amber:#C98B2D; --amber-tint:#F9F0DE;
+  --line:#E8DFD2;
+  --sb-w:312px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.8;font-size:16.5px;-webkit-text-size-adjust:100%}
+::selection{background:var(--gold-soft)}
+a{color:var(--terra-deep)}
+:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px;border-radius:4px}
+
+/* ===== Progress bar ===== */
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--terra),var(--gold));width:0%;z-index:1200}
+
+/* ===== Sidebar (desktop) ===== */
+.sb{position:fixed;top:0;left:0;width:var(--sb-w);height:100dvh;background:var(--surface);border-right:1px solid var(--line);z-index:1000;display:flex;flex-direction:column;padding:30px 0 18px}
+.sb-brand{padding:0 26px 20px;border-bottom:1px solid var(--line)}
+.sb-brand .mono{font-size:10.5px;letter-spacing:2.5px;font-weight:800;color:var(--gold);text-transform:uppercase}
+.sb-brand h2{font-family:'Fraunces',serif;font-weight:600;font-size:21px;line-height:1.25;margin-top:6px}
+.sb-brand h2 em{font-style:italic;color:var(--terra)}
+.sb-scroll{flex:1;overflow-y:auto;padding:18px 14px 10px;scrollbar-width:thin}
+/* Garis Tumbuh — growth rail */
+.rail{position:relative;padding-left:8px}
+.rail::before{content:"";position:absolute;left:19px;top:14px;bottom:14px;width:2px;background:linear-gradient(180deg,var(--gold-soft),var(--terra) 60%,var(--sage));border-radius:2px}
+.rail a{position:relative;display:flex;align-items:center;gap:12px;padding:9px 10px 9px 4px;text-decoration:none;color:var(--ink-soft);font-size:13.5px;font-weight:600;border-radius:10px;min-height:44px}
+.rail a .dot{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--surface);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:800;color:var(--ink-soft);z-index:1}
+.rail a:hover{background:var(--terra-tint);color:var(--terra-deep)}
+.rail a.on{color:var(--terra-deep);background:var(--terra-tint)}
+.rail a.on .dot{border-color:var(--terra);background:var(--terra);color:#fff}
+.rail .age{margin-left:auto;font-size:10px;font-weight:800;color:var(--sage-deep);background:var(--sage-tint);padding:3px 8px;border-radius:20px;letter-spacing:.3px;white-space:nowrap}
+.sb-foot{padding:14px 26px 0;border-top:1px solid var(--line);font-size:11px;color:var(--ink-soft)}
+.sb-foot b{color:var(--gold)}
+
+/* ===== Topbar (mobile) ===== */
+.topbar{display:none;position:fixed;top:0;left:0;right:0;z-index:1100;background:rgba(255,253,249,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:0 8px 0 18px;height:58px;align-items:center;justify-content:space-between}
+.topbar .t{font-family:'Fraunces',serif;font-size:16px;font-weight:600}
+.topbar .t em{font-style:italic;color:var(--terra)}
+.menu-btn{background:none;border:none;width:48px;height:48px;font-size:22px;color:var(--ink);cursor:pointer;border-radius:12px}
+.ov{position:fixed;inset:0;background:rgba(59,46,38,.45);z-index:1090;opacity:0;pointer-events:none;transition:opacity .25s}
+.ov.open{opacity:1;pointer-events:auto}
+
+/* ===== Main layout ===== */
+.main{margin-left:var(--sb-w)}
+.inner{max-width:900px;margin:0 auto;padding:0 56px}
+
+/* ===== Cover ===== */
+.cover{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;position:relative;background:
+  radial-gradient(1100px 500px at 85% -10%, var(--terra-tint), transparent 60%),
+  radial-gradient(900px 460px at -10% 110%, var(--sage-tint), transparent 55%),
+  var(--cream);
+  padding:80px 0 70px}
+.cover .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;color:var(--terra-deep);margin-bottom:26px}
+.cover .eyebrow::before{content:"";width:34px;height:2px;background:var(--gold)}
+.cover h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(40px,5.2vw,68px);line-height:1.06;letter-spacing:-.5px;max-width:14ch}
+.cover h1 em{font-style:italic;font-weight:600;color:var(--terra)}
+.cover .subtitle{font-size:clamp(14px,1.2vw,17px);font-weight:700;color:var(--ink);margin-top:18px;max-width:52ch}
+.cover .subtitle span{color:var(--sage-deep)}
+.cover .tagline{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(19px,1.9vw,25px);color:var(--terra-deep);margin-top:22px}
+.cover .sub{font-size:clamp(16px,1.4vw,19px);color:var(--ink-soft);max-width:56ch;margin:26px 0 34px}
+.cover .sub b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);padding:9px 16px;border-radius:30px;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.chip b{color:var(--sage-deep)}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;opacity:.7}
+
+/* ===== TOC section ===== */
+.toc-sec{padding:70px 0;border-top:1px solid var(--line)}
+.sec-label{font-size:11px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.toc-sec h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,34px);font-weight:600;margin-bottom:30px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.toc-card{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:border-color .2s, transform .2s;min-height:44px}
+.toc-card:hover{border-color:var(--terra);transform:translateY(-2px)}
+.toc-card .n{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--gold);line-height:1.35;min-width:26px}
+.toc-card .tt{font-size:14.5px;font-weight:700;line-height:1.45}
+.toc-card .d{font-size:12.5px;color:var(--ink-soft);font-weight:500;margin-top:2px}
+
+/* ===== Chapters ===== */
+.ch{padding:74px 0 10px;border-top:1px solid var(--line);scroll-margin-top:12px}
+@media(max-width:900px){.ch{scroll-margin-top:58px}}
+.ch-head{margin-bottom:34px}
+.ch-meta{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.ch-n{font-size:11px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:var(--terra-deep)}
+.age-chip{font-size:11px;font-weight:800;color:var(--sage-deep);background:var(--sage-tint);border:1px solid #DCE3D2;padding:4px 12px;border-radius:20px;letter-spacing:.5px}
+.ch-t{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-.3px}
+.ch-t em{font-style:italic;color:var(--terra)}
+.sum{position:relative;background:var(--surface);border:1px solid var(--line);border-left:none;border-radius:14px;padding:20px 24px 20px 30px;margin:24px 0 6px;font-size:15px;color:var(--ink-soft);overflow:hidden}
+.sum::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--terra))}
+.sum .lb{display:block;font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.sum b{color:var(--ink)}
+h2.h{font-family:'Fraunces',serif;font-size:clamp(21px,2.2vw,26px);font-weight:600;margin:42px 0 14px;line-height:1.3}
+h3.h{font-size:17px;font-weight:800;margin:26px 0 10px}
+p{margin-bottom:16px;color:#4A3E35}
+p b,li b,strong{color:var(--ink)}
+ul.ls,ol.ls{margin:6px 0 20px 24px}
+.ls li{margin-bottom:9px;color:#4A3E35}
+.ls li::marker{color:var(--terra)}
+
+/* Callouts */
+.co{border-radius:0 14px 14px 0;padding:17px 21px;margin:24px 0;font-size:14.5px;line-height:1.75;border-left:4px solid}
+.co .ct{display:block;font-size:10.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:5px}
+.co-ok{background:var(--sage-tint);border-color:var(--sage);color:#42503A}.co-ok .ct{color:var(--sage-deep)}
+.co-warn{background:var(--amber-tint);border-color:var(--amber);color:#6E4E1C}.co-warn .ct{color:var(--amber)}
+.co-danger{background:var(--danger-tint);border-color:var(--danger);color:#6E2A1F}.co-danger .ct{color:var(--danger)}
+.co-sci{background:var(--surface);border-color:var(--gold);color:var(--ink-soft);font-size:14px}.co-sci .ct{color:var(--gold)}
+.co-kit{background:var(--terra-tint);border-color:var(--terra);color:#6E4030}.co-kit .ct{color:var(--terra-deep)}
+.co b{color:inherit;font-weight:800}
+
+/* Tables */
+.tw{overflow-x:auto;margin:24px 0;border:1px solid var(--line);border-radius:14px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--surface);min-width:480px}
+th{background:var(--ink);color:var(--cream);padding:13px 16px;text-align:left;font-size:12px;letter-spacing:.8px;text-transform:uppercase;white-space:nowrap}
+td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:#4A3E35}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#FBF8F2}
+
+/* Stage cheat-sheet */
+.cheat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0}
+.cheat .c{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center}
+.cheat .l{font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-soft)}
+.cheat .v{font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--terra-deep);margin-top:6px;line-height:1.3}
+.cheat .s{font-size:11.5px;color:var(--ink-soft);margin-top:4px;font-weight:600}
+
+/* Recipes */
+.recipe{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:16px 0}
+.recipe h4{font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--terra-deep);margin-bottom:8px}
+.recipe p{margin-bottom:6px;font-size:14.5px}
+.recipe .why{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:800;color:var(--sage-deep);background:var(--sage-tint);padding:5px 12px;border-radius:20px}
+
+/* Kit cards (Bab 10) */
+.kits{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.kit{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+.kit::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terra),var(--gold))}
+.kit .kn{font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.kit h4{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin:8px 0 8px}
+.kit p{font-size:13.5px;color:var(--ink-soft);margin-bottom:10px}
+.kit .use{font-size:12px;font-weight:700;color:var(--sage-deep)}
+.kit.wide{grid-column:1/-1}
+
+/* End */
+.end{text-align:center;padding:70px 0 60px;border-top:1px solid var(--line);margin-top:60px}
+.end .mark{font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--terra)}
+.end .sm{font-size:11px;letter-spacing:2.6px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-top:10px}
+
+/* ===== Responsive ===== */
+@media(max-width:1080px){.inner{padding:0 40px}}
+@media(max-width:900px){
+  :root{--sb-w:0px}
+  body{font-size:16px}
+  .main{margin-left:0}
+  .inner{padding:0 20px}
+  .topbar{display:flex}
+  .sb{left:auto;right:0;width:min(320px,86vw);transform:translateX(105%);transition:transform .28s ease;box-shadow:-12px 0 40px rgba(59,46,38,.18)}
+  .sb.open{transform:translateX(0)}
+  .cover{min-height:calc(100dvh - 0px);padding:110px 0 80px;justify-content:flex-start}
+  .cover h1{font-size:clamp(34px,9.5vw,44px)}
+  .cover .sub{margin:20px 0 26px}
+  .scroll-cue{display:none}
+  .toc-grid{grid-template-columns:1fr}
+  .ch{padding:56px 0 6px}
+  .cheat{grid-template-columns:1fr 1fr}
+  .kits{grid-template-columns:1fr}
+  .co{padding:15px 17px}
+  .sum{padding:17px 18px 17px 24px}
+  th,td{padding:11px 13px}
+}
+@media(max-width:380px){.cheat{grid-template-columns:1fr 1fr}.inner{padding:0 16px}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<header class="topbar">
+  <span class="t">MPASI <em>Cegah Stunting</em></span>
+  <button class="menu-btn" id="menuBtn" aria-label="Buka daftar isi" aria-expanded="false">☰</button>
+</header>
+<div class="ov" id="ov"></div>
+
+<aside class="sb" id="sb" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <span class="mono">Ebook + 5 Kit Premium</span>
+    <h2>MPASI <em>Cegah Stunting</em><br>6–24 Bulan</h2>
+  </div>
+  <div class="sb-scroll">
+    <nav class="rail" id="rail">
+      <a href="#bab1"><span class="dot">1</span>Realita Stunting &amp; 1000 HPK<span class="age">DASAR</span></a>
+      <a href="#bab2"><span class="dot">2</span>4 Pilar MPASI Adekuat<span class="age">DASAR</span></a>
+      <a href="#bab3"><span class="dot">3</span>Protokol Protein Pertama<span class="age">KUNCI</span></a>
+      <a href="#bab4"><span class="dot">4</span>Tahap Pengenalan<span class="age">6–8 BLN</span></a>
+      <a href="#bab5"><span class="dot">5</span>Naik Tekstur<span class="age">9–11 BLN</span></a>
+      <a href="#bab6"><span class="dot">6</span>Makanan Keluarga<span class="age">12–24 BLN</span></a>
+      <a href="#bab7"><span class="dot">7</span>Stimulasi Tumbuh Kembang<span class="age">0–24 BLN</span></a>
+      <a href="#bab8"><span class="dot">8</span>Atasi GTM &amp; Picky Eater<span class="age">PRAKTIK</span></a>
+      <a href="#bab9"><span class="dot">9</span>Alergi &amp; Tanda Bahaya<span class="age">SIAGA</span></a>
+      <a href="#bab10"><span class="dot">10</span>Panduan 5 Kit Premium<span class="age">TOOLS</span></a>
+    </nav>
+  </div>
+  <div class="sb-foot">Berbasis <b>WHO · IDAI · Kemenkes</b><br>Diverifikasi 2026</div>
+</aside>
+
+<main class="main">
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="inner">
+    <span class="eyebrow">Ebook 10 Bab + 5 Kit Premium · Edisi 2026</span>
+    <h1>MPASI <em>Cegah Stunting</em></h1>
+    <p class="subtitle">Panduan MPASI 6–24 Bulan + Stimulasi Tumbuh Kembang <span>· Berbasis WHO &amp; IDAI</span></p>
+    <p class="tagline">"1000 hari pertama tidak bisa diulang."</p>
+    <p class="sub">Bukan mitos warisan grup WhatsApp — ini protokol berbasis sains kesehatan anak terkini, disusun agar Bunda tahu persis <b>apa yang harus dilakukan hari ini,</b> bukan sekadar teori.</p>
+    <div class="chips">
+      <div class="chip">✓ <b>WHO &amp; IDAI</b></div>
+      <div class="chip">✓ 10 bab tuntas</div>
+      <div class="chip">✓ 5 Kit interaktif premium</div>
+      <div class="chip">✓ Diverifikasi 2026</div>
+    </div>
+  </div>
+  <span class="scroll-cue">Gulir untuk mulai ↓</span>
+</section>
+
+<!-- ============ TOC ============ -->
+<section class="toc-sec">
+  <div class="inner">
+    <div class="sec-label">Peta Perjalanan</div>
+    <h2>Dari hari pertama MPASI sampai meja makan keluarga.</h2>
+    <div class="toc-grid">
+      <a class="toc-card" href="#bab1"><span class="n">1</span><span><span class="tt">Realita Stunting &amp; 1000 Hari Pertama</span><span class="d">Kenapa periode ini menentukan seumur hidup</span></span></a>
+      <a class="toc-card" href="#bab2"><span class="n">2</span><span><span class="tt">4 Pilar MPASI Adekuat</span><span class="d">Standar WHO &amp; IDAI — kebanyakan orang tua baru penuhi 2</span></span></a>
+      <a class="toc-card" href="#bab3"><span class="n">3</span><span><span class="tt">Protokol Protein Pertama</span><span class="d">Satu aturan yang memisahkan tumbuh optimal vs stunting</span></span></a>
+      <a class="toc-card" href="#bab4"><span class="n">4</span><span><span class="tt">MPASI 6–8 Bulan: Tahap Pengenalan</span><span class="d">Tekstur lumat, porsi naik bertahap</span></span></a>
+      <a class="toc-card" href="#bab5"><span class="n">5</span><span><span class="tt">MPASI 9–11 Bulan: Naik Tekstur</span><span class="d">Fase paling sering terlewat — akar GTM</span></span></a>
+      <a class="toc-card" href="#bab6"><span class="n">6</span><span><span class="tt">MPASI 12–24 Bulan: Makanan Keluarga</span><span class="d">Transisi ke meja makan &amp; makan mandiri</span></span></a>
+      <a class="toc-card" href="#bab7"><span class="n">7</span><span><span class="tt">Stimulasi Tumbuh Kembang</span><span class="d">Gizi bangun hardware, stimulasi asah software</span></span></a>
+      <a class="toc-card" href="#bab8"><span class="n">8</span><span><span class="tt">Atasi GTM &amp; Picky Eater</span><span class="d">Metode 8–15 Paparan &amp; responsive feeding</span></span></a>
+      <a class="toc-card" href="#bab9"><span class="n">9</span><span><span class="tt">Alergi, Tanda Bahaya &amp; Kapan ke Dokter</span><span class="d">Protokol siaga yang wajib Bunda hafal</span></span></a>
+      <a class="toc-card" href="#bab10"><span class="n">10</span><span><span class="tt">Panduan 5 Kit Premium</span><span class="d">Cara pakai semua tools interaktif untuk eksekusi</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BAB 1 ============ -->
+<section class="ch" id="bab1">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 1</span><span class="age-chip">FONDASI</span></div>
+      <div class="ch-t">Realita Stunting &amp; <em>1000 Hari Pertama</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Stunting bukan sekadar "anak pendek" — ini gagal tumbuh yang dampaknya seumur hidup pada kecerdasan &amp; kesehatan. Kabar baiknya: <b>bisa dicegah</b>, dan jendela emasnya ada di 1000 hari pertama.</div>
+
+    <h2 class="h">Angka yang harus Bunda tahu</h2>
+    <p>Berdasarkan Survei Kesehatan Indonesia 2023, <strong>1 dari 5 anak Indonesia (21,6%) mengalami stunting.</strong> Artinya, dari 5 balita yang Bunda temui di Posyandu, kemungkinan 1 di antaranya bertumbuh tidak optimal — dan sebagian besar orang tuanya <strong>tidak sadar</strong>.</p>
+    <p>Tapi stunting <strong>bukan takdir dan bukan genetik semata.</strong> WHO menegaskan: stunting adalah hasil kekurangan gizi kronis + infeksi berulang di periode kritis — dan keduanya bisa dicegah dengan pengetahuan yang tepat. Pengetahuan itulah isi buku ini.</p>
+    <div class="co co-warn"><span class="ct">Jebakan Paling Umum</span>Stunting diukur dari <b>tinggi badan menurut usia (TB/U)</b>, BUKAN berat badan. Anak bisa terlihat "gemuk sehat" tapi pendek = tetap stunting. Inilah kenapa banyak orang tua terlambat sadar — mereka hanya memantau timbangan.</div>
+
+    <h2 class="h">Kenapa 1000 hari pertama sangat menentukan</h2>
+    <p>1000 Hari Pertama Kehidupan (1000 HPK) = sejak konsepsi sampai anak usia 2 tahun. Di periode ini:</p>
+    <ul class="ls">
+      <li><strong>±80% otak anak terbentuk</strong> — nutrisi hari ini langsung menjadi arsitektur kecerdasannya</li>
+      <li>Pertumbuhan fisik tercepat sepanjang hidup manusia</li>
+      <li>Sistem imun &amp; metabolisme "diprogram" untuk jangka panjang</li>
+    </ul>
+    <p>Kekurangan gizi di fase ini bersifat <strong>permanen dan sangat sulit dikejar</strong> setelah usia 2 tahun. Itulah kenapa MPASI yang benar sejak 6 bulan bukan sekadar urusan dapur — ini <strong>investasi terpenting</strong> yang pernah Bunda buat.</p>
+    <div class="co co-danger"><span class="ct">Dampak Jangka Panjang</span>Riset Lancet (2013, 2021) mencatat dampak stunting: IQ lebih rendah 5–11 poin, prestasi sekolah turun, risiko penyakit kronis (diabetes, jantung) saat dewasa lebih tinggi, dan produktivitas serta penghasilan dewasa berkurang. Ini bukan menakut-nakuti — ini alasan kenapa buku ini ada di tangan Bunda.</div>
+
+    <h2 class="h">Kabar baiknya: hanya 3 pilar</h2>
+    <p>Seluruh isi buku ini bermuara pada 3 pilar sederhana: <strong>(1) MPASI bergizi tepat waktu, (2) protein hewani setiap kali makan, (3) stimulasi tumbuh kembang harian.</strong> Tiga hal ini yang akan kita bedah tuntas — lengkap dengan tools untuk mengeksekusinya. Yuk mulai.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 2 ============ -->
+<section class="ch" id="bab2">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 2</span><span class="age-chip">STANDAR WHO · IDAI</span></div>
+      <div class="ch-t">4 Pilar MPASI <em>Adekuat</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>MPASI yang benar punya 4 syarat. Kebanyakan orang tua hanya memenuhi 1–2 — padahal <b>keempatnya harus terpenuhi</b> untuk mencegah stunting.</div>
+
+    <h2 class="h">Kapan mulai MPASI?</h2>
+    <p>WHO &amp; IDAI sepakat: mulai MPASI tepat di <strong>usia 6 bulan (±180 hari).</strong> Tidak terlalu cepat — sistem cerna belum siap. Tidak terlalu lambat — setelah 6 bulan, ASI saja sudah tidak mencukupi kebutuhan zat besi &amp; energi bayi.</p>
+    <p>Tanda bayi siap MPASI: bisa duduk dengan topangan, kepala tegak stabil, tertarik melihat makanan, dan refleks menjulurkan lidah mulai berkurang.</p>
+
+    <h2 class="h">4 Pilar yang wajib terpenuhi bersamaan</h2>
+    <div class="tw"><table>
+      <tr><th>Pilar</th><th>Artinya</th></tr>
+      <tr><td><strong>1 · Tepat Waktu</strong></td><td>Mulai usia 6 bulan, tidak ditunda</td></tr>
+      <tr><td><strong>2 · Adekuat (Cukup)</strong></td><td>Cukup energi, protein, &amp; mikronutrien sesuai usia</td></tr>
+      <tr><td><strong>3 · Aman &amp; Higienis</strong></td><td>Disiapkan &amp; disimpan bersih, hindari kontaminasi</td></tr>
+      <tr><td><strong>4 · Diberikan dengan Benar</strong></td><td>Responsive feeding — peka sinyal lapar/kenyang, tanpa paksaan</td></tr>
+    </table></div>
+
+    <h2 class="h">Formula Satu Mangkok</h2>
+    <p>Setiap kali makan, satu mangkok MPASI idealnya mengandung 4 komponen:</p>
+    <ul class="ls">
+      <li><strong>Karbohidrat</strong> — nasi, kentang, ubi (sumber energi)</li>
+      <li><strong>Protein hewani</strong> — telur, hati, ikan, daging, ayam (PALING penting — dibedah tuntas di Bab 3)</li>
+      <li><strong>Lemak tambahan</strong> — minyak, santan, mentega, keju (menaikkan densitas kalori + membantu serap vitamin)</li>
+      <li><strong>Sayur &amp; buah</strong> — vitamin &amp; serat, porsi kecil saja, jangan dominan</li>
+    </ul>
+    <div class="co co-warn"><span class="ct">Kesalahan Umum</span>MPASI terlalu banyak sayur/buah &amp; terlalu sedikit protein. Sayur mengenyangkan tapi rendah kalori &amp; zat besi. Lambung bayi kecil — setiap suapan harus <b>padat gizi</b>, bukan padat serat.</div>
+    <div class="co co-kit"><span class="ct">Eksekusi — Kit 1</span>Buka <b>Kit 1 · Daily Command Center</b>: pilih usia bayi sekali, dan jadwal makan, jadwal tidur, serta kebutuhan kalori hariannya langsung tersusun otomatis.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 3 ============ -->
+<section class="ch" id="bab3">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 3</span><span class="age-chip">BAB PALING PENTING</span></div>
+      <div class="ch-t">Protokol <em>Protein Pertama</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Kalau Bunda hanya ingat 1 hal dari seluruh buku ini, ingat ini: <b>protein hewani wajib hadir setiap kali makan, sejak suapan MPASI pertama.</b> Ini pembeda utama anak yang tumbuh optimal vs stunting.</div>
+
+    <h2 class="h">Kenapa protein hewani sepenting itu?</h2>
+    <p>IDAI &amp; WHO 2023 menempatkan protein hewani sebagai prioritas utama MPASI karena tiga alasan:</p>
+    <ul class="ls">
+      <li><strong>Asam amino lengkap</strong> — bahan baku pembangunan jaringan tubuh &amp; otak</li>
+      <li><strong>Zat besi heme</strong> — bentuk zat besi yang paling mudah diserap tubuh (mencegah anemia, yang diam-diam merusak perkembangan otak)</li>
+      <li><strong>Zinc, B12, DHA</strong> — mikronutrien kritis untuk imunitas &amp; kognitif</li>
+    </ul>
+    <p>Protein nabati (tahu, tempe, kacang) baik sebagai pelengkap, TAPI <strong>tidak bisa menggantikan protein hewani</strong> — kandungan &amp; tingkat penyerapan zat besinya jauh lebih rendah.</p>
+    <div class="co co-sci"><span class="ct">Bukti Riset</span>Studi lintas negara menunjukkan konsumsi protein hewani harian pada periode MPASI berkorelasi kuat dengan penurunan stunting. Penelitian "egg intervention" (Iannotti et al., <i>Pediatrics</i> 2017) membuktikan: pemberian <b>1 telur per hari selama 6 bulan menurunkan prevalensi stunting hingga 47%</b>. Satu telur. Sesederhana itu.</div>
+
+    <h2 class="h">Sumber terbaik &amp; paling terjangkau</h2>
+    <div class="tw"><table>
+      <tr><th>Sumber</th><th>Keunggulan</th><th>Mulai Usia</th></tr>
+      <tr><td>Telur (kuning + putih)</td><td>Murah, lengkap, paling mudah didapat</td><td>6 bln</td></tr>
+      <tr><td>Hati ayam / sapi</td><td>Zat besi TERTINGGI — senjata anti-anemia</td><td>6 bln</td></tr>
+      <tr><td>Ikan (kembung, lele, tuna)</td><td>Omega-3/DHA untuk otak — kembung lokal setara salmon</td><td>6 bln</td></tr>
+      <tr><td>Daging sapi / ayam</td><td>Protein &amp; zinc tinggi</td><td>6 bln</td></tr>
+    </table></div>
+    <div class="co co-ok"><span class="ct">Aturan Emas</span>Setiap kali MPASI, pastikan ada protein hewani. Variasikan: telur pagi, ikan siang, hati ayam malam. Anggaran terbatas bukan halangan — <b>telur &amp; hati ayam adalah dua pangan paling padat gizi per rupiahnya.</b></div>
+    <div class="co co-danger"><span class="ct">Mitos Berbahaya</span>"Bayi belum boleh makan daging/telur sebelum 1 tahun." <b>Salah total — dan mahal harganya.</b> Justru menunda protein hewani mempertinggi risiko stunting &amp; anemia. Uji semua mitos yang pernah Bunda dengar di Kit 5 · MPASI Academy.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 4 ============ -->
+<section class="ch" id="bab4">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 4</span><span class="age-chip">6–8 BULAN</span></div>
+      <div class="ch-t">Tahap <em>Pengenalan</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Bulan-bulan pertama MPASI. Tekstur lumat, porsi kecil naik bertahap, fokus mengenalkan rasa — dan protein hewani sejak <b>suapan pertama</b>.</div>
+
+    <div class="cheat">
+      <div class="c"><div class="l">Frekuensi</div><div class="v">2–3× makan</div><div class="s">+ 1–2× snack</div></div>
+      <div class="c"><div class="l">Porsi</div><div class="v">2–3 sdm → ½ mangkok</div><div class="s">±125 ml, naik bertahap</div></div>
+      <div class="c"><div class="l">Tekstur</div><div class="v">Lumat / saring</div><div class="s">puree halus</div></div>
+      <div class="c"><div class="l">ASI / Sufor</div><div class="v">On demand</div><div class="s">tetap jalan</div></div>
+    </div>
+
+    <h2 class="h">Contoh menu andalan</h2>
+    <div class="recipe"><h4>Bubur Hati Ayam Wortel</h4><p>Beras 2 sdm + hati ayam 20 g + wortel 1 potong + ASI/kaldu. Rebus beras jadi bubur, kukus hati &amp; wortel, haluskan, saring.</p><span class="why">Zat besi tertinggi — anti-anemia</span></div>
+    <div class="recipe"><h4>Puree Alpukat + ASI</h4><p>Alpukat ¼ buah + ASI 1–2 sdm. Haluskan dengan garpu sampai lembut.</p><span class="why">Lemak sehat untuk otak</span></div>
+    <div class="co co-kit"><span class="ct">Eksekusi — Kit 3</span>Kenalkan 1 bahan baru setiap 3 hari (metode 3-Day Wait) untuk deteksi alergi. Catat semuanya di <b>Kit 3 · Dapur MPASI Premium</b> — di sana ada 30+ resep per usia, food diary alergi, sampai meal planner mingguan.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 5 ============ -->
+<section class="ch" id="bab5">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 5</span><span class="age-chip">9–11 BULAN</span></div>
+      <div class="ch-t">Naik <em>Tekstur</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Saatnya naik ke cincang kasar/tim &amp; mulai finger food. <b>Telat naik tekstur adalah penyebab GTM paling umum</b> — dan paling sering tidak disadari.</div>
+
+    <div class="cheat">
+      <div class="c"><div class="l">Frekuensi</div><div class="v">3–4× makan</div><div class="s">+ 1–2× snack</div></div>
+      <div class="c"><div class="l">Porsi</div><div class="v">½ mangkok</div><div class="s">±125 ml</div></div>
+      <div class="c"><div class="l">Tekstur</div><div class="v">Cincang / tim</div><div class="s">tidak disaring lagi</div></div>
+      <div class="c"><div class="l">Skill Baru</div><div class="v">Finger food</div><div class="s">latih motorik</div></div>
+    </div>
+
+    <div class="co co-warn"><span class="ct">Fase Paling Sering Terlewat</span>Banyak bayi masih diberi puree halus di usia 10–11 bulan karena orang tua "takut keselek". Padahal fase ini melatih kemampuan mengunyah (oromotor). Telat naik tekstur = risiko GTM &amp; susah makan di usia toddler — masalahnya baru terasa berbulan-bulan kemudian.</div>
+
+    <h2 class="h">Finger food yang aman</h2>
+    <p>Potongan seukuran jari dengan tekstur lembut: ubi kukus, pisang, brokoli kukus, tahu, telur orak-arik. Biarkan bayi memegang &amp; makan sendiri — berantakan itu bagian dari belajar. <strong>Selalu dampingi saat makan.</strong></p>
+    <div class="co co-kit"><span class="ct">Eksekusi — Kit 1 &amp; 2</span>Susun struktur makan di <b>Kit 1 · Daily Command Center</b>, dan pantau perkembangan motorik makannya di <b>Kit 2 · Growth &amp; Milestone Monitor</b>.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 6 ============ -->
+<section class="ch" id="bab6">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 6</span><span class="age-chip">12–24 BULAN</span></div>
+      <div class="ch-t">Makanan <em>Keluarga</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Anak mulai makan menu keluarga. Ini fase rawan picky eater — kuncinya <b>variasi, konsistensi, dan makan bersama</b>.</div>
+
+    <div class="cheat">
+      <div class="c"><div class="l">Frekuensi</div><div class="v">3–4× makan</div><div class="s">+ 1–2× snack</div></div>
+      <div class="c"><div class="l">Porsi</div><div class="v">¾–1 mangkok</div><div class="s">175–250 ml</div></div>
+      <div class="c"><div class="l">Tekstur</div><div class="v">Menu keluarga</div><div class="s">potong kecil</div></div>
+      <div class="c"><div class="l">ASI</div><div class="v">Sampai 2 thn</div><div class="s">rekomendasi WHO</div></div>
+    </div>
+
+    <div class="co co-warn"><span class="ct">Batasi Gula &amp; Garam</span>Anak di bawah 2 tahun tidak butuh gula/garam tambahan. Ginjal belum matang, dan lidah yang terbiasa manis-asin sejak dini = bibit picky eater + risiko obesitas &amp; hipertensi dini.</div>
+
+    <h2 class="h">Latih makan mandiri</h2>
+    <p>Beri sendok, biarkan makan sendiri — berantakan itu normal &amp; justru penting. Makan bersama keluarga membuat anak meniru pola makan sehat secara alami. Meja makan adalah ruang kelas pertamanya.</p>
+    <div class="co co-kit"><span class="ct">Eksekusi — Kit 2 &amp; 3</span>Cari inspirasi menu keluarga sehat di <b>Kit 3 · Dapur MPASI Premium</b>, dan timbang-ukur rutin tiap bulan lalu catat di <b>Kit 2 · Growth &amp; Milestone Monitor</b>.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 7 ============ -->
+<section class="ch" id="bab7">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 7</span><span class="age-chip">0–24 BULAN</span></div>
+      <div class="ch-t">Stimulasi <em>Tumbuh Kembang</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Gizi membangun "hardware", stimulasi mengasah "software". <b>Keduanya wajib</b> — anak cerdas lahir dari piring yang benar dan interaksi yang cukup.</div>
+
+    <h2 class="h">3 aspek yang dipantau</h2>
+    <ul class="ls">
+      <li><strong>Motorik</strong> — kasar (duduk, jalan) &amp; halus (menggenggam, menjepit)</li>
+      <li><strong>Bahasa</strong> — mengoceh → kata pertama → kalimat</li>
+      <li><strong>Sosial-emosi</strong> — interaksi, empati, kemandirian</li>
+    </ul>
+
+    <h2 class="h">Stimulasi praktis sehari-hari</h2>
+    <div class="tw"><table>
+      <tr><th>Usia</th><th>Stimulasi Harian</th></tr>
+      <tr><td>0–6 bln</td><td>Tummy time, ajak mengobrol, tatap mata, mainan warna kontras</td></tr>
+      <tr><td>6–12 bln</td><td>Cilukba, baca buku, panggil nama, latih duduk &amp; merangkak</td></tr>
+      <tr><td>12–18 bln</td><td>Sebut nama benda, coret-coret crayon, mainan dorong, lagu anak</td></tr>
+      <tr><td>18–24 bln</td><td>Main peran, puzzle sederhana, cerita interaktif, kalimat lengkap</td></tr>
+    </table></div>
+    <div class="co co-ok"><span class="ct">Kunci Utama</span>Stimulasi terbaik = interaksi langsung Bunda dengan anak — bukan gadget. Riset konsisten menunjukkan screen time di bawah 2 tahun mengganggu perkembangan bahasa &amp; atensi. Wajah Bunda adalah "aplikasi edukasi" terbaik yang pernah ada.</div>
+    <div class="co co-kit"><span class="ct">Eksekusi — Kit 2</span>Buka <b>Kit 2 · Growth &amp; Milestone Monitor</b>: input usia anak, dan checklist milestone + ide stimulasi spesifik usianya muncul dalam satu layar.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 8 ============ -->
+<section class="ch" id="bab8">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 8</span><span class="age-chip">PRAKTIK</span></div>
+      <div class="ch-t">Atasi GTM &amp; <em>Picky Eater</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>GTM (Gerakan Tutup Mulut) membuat jutaan Bunda stres setiap hari. Pahami akar penyebabnya &amp; atasi dengan responsive feeding — <b>bukan paksaan</b>.</div>
+
+    <h2 class="h">5 akar penyebab GTM</h2>
+    <ul class="ls">
+      <li>Bosan — menu &amp; rasa yang itu-itu saja</li>
+      <li>Tekstur tidak sesuai usianya (terlalu halus atau terlalu kasar)</li>
+      <li>Sedang sakit atau tumbuh gigi</li>
+      <li>Distraksi — TV, gadget, atau mainan saat makan</li>
+      <li>Porsi terlalu besar / jadwal makan terlalu rapat</li>
+    </ul>
+
+    <h2 class="h">Metode 8–15 Paparan</h2>
+    <p>Riset perilaku makan anak menunjukkan: bayi butuh <strong>8–15 kali paparan</strong> terhadap rasa baru sebelum menerimanya. Artinya, anak menolak brokoli 5 kali <strong>bukan berarti dia benci brokoli</strong> — dia baru setengah jalan. Kebanyakan orang tua menyerah di percobaan ke-2.</p>
+    <h3 class="h">Strategi lengkapnya</h3>
+    <ul class="ls">
+      <li><strong>Variasi menu &amp; tekstur</strong> — jangan menu sama setiap hari</li>
+      <li><strong>Responsive feeding</strong> — peka sinyal lapar/kenyang, jangan paksa</li>
+      <li><strong>Jadwal konsisten</strong> — durasi makan maksimal 30 menit, selesai ya selesai</li>
+      <li><strong>Zero distraksi</strong> — matikan TV &amp; gadget, fokus ke makanan</li>
+      <li><strong>Sabar sampai paparan ke-15</strong> — tawarkan ulang tanpa drama</li>
+    </ul>
+    <div class="co co-danger"><span class="ct">Jangan Pernah</span>Memaksa, mengancam, atau menyuapi sambil mengejar anak keliling rumah. Ini menciptakan asosiasi negatif dengan makan &amp; memperparah GTM jangka panjang. Trauma makan jauh lebih sulit diperbaiki daripada GTM itu sendiri.</div>
+  </div>
+</section>
+
+<!-- ============ BAB 9 ============ -->
+<section class="ch" id="bab9">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 9</span><span class="age-chip">PROTOKOL SIAGA</span></div>
+      <div class="ch-t">Alergi, Tanda Bahaya &amp; <em>Kapan ke Dokter</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Kenali tanda alergi &amp; gejala bahaya yang butuh penanganan medis segera. <b>Lebih baik waspada 10 kali daripada terlambat 1 kali.</b></div>
+
+    <h2 class="h">Alergi makanan</h2>
+    <p>Alergen umum: telur, kacang, susu sapi, seafood, gandum, kedelai. <strong>Kenalkan dini &amp; bertahap</strong> dengan metode 3-Day Wait — riset terbaru justru membuktikan pengenalan dini MENURUNKAN risiko alergi, bukan sebaliknya.</p>
+    <p>Tanda alergi: ruam/biduran, bengkak, muntah, atau diare setelah makan. Bila muncul, hentikan makanan tersebut &amp; konsultasikan ke dokter.</p>
+    <div class="co co-danger"><span class="ct">Segera ke IGD Bila</span>Demam tinggi (bayi &lt;3 bulan), tidak mau minum sama sekali, muntah terus-menerus/hijau, diare berdarah, lemas &amp; sulit dibangunkan, sesak/kebiruan, kejang, tanda dehidrasi (mata cekung, popok kering &gt;6 jam), atau reaksi alergi berat (bengkak/sesak). <b>Jangan tunggu, jangan tunda.</b></div>
+    <div class="co co-kit"><span class="ct">Eksekusi — Kit 4</span>Simpan <b>Kit 4 · Safety &amp; Emergency Kit</b> di tempat yang paling mudah dibuka: centang gejala yang ada, sistem langsung memberi tahu apakah perlu observasi, ke dokter dalam 24 jam, atau IGD sekarang.</div>
+
+    <h2 class="h">Rutin ke Posyandu</h2>
+    <p>Timbang &amp; ukur tinggi setiap bulan di Posyandu untuk memantau pertumbuhan &amp; deteksi dini stunting. Ikuti jadwal imunisasi IDAI — imunisasi mencegah infeksi berulang yang menjadi salah satu pemicu utama gagal tumbuh.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 10 ============ -->
+<section class="ch" id="bab10">
+  <div class="inner">
+    <div class="ch-head">
+      <div class="ch-meta"><span class="ch-n">Bab 10</span><span class="age-chip">TOOLS EKSEKUSI</span></div>
+      <div class="ch-t">Panduan <em>5 Kit Premium</em></div>
+    </div>
+    <div class="sum"><span class="lb">Inti Bab</span>Ilmu tanpa eksekusi tidak menurunkan risiko stunting. 5 Kit interaktif ini adalah <b>mesin eksekusi</b> Bunda — masing-masing punya tugas &amp; momen pakainya sendiri.</div>
+
+    <div class="kits">
+      <div class="kit"><div class="kn">Kit 1 · Harian</div><h4>🗓️ Daily Command Center</h4><p>Jadwal MPASI per usia + jadwal tidur &amp; feeding + kalkulator porsi &amp; kalori — dalam satu aplikasi. Pilih usia sekali, semuanya tersinkron.</p><div class="use">Dipakai: setiap hari, sebagai struktur rutinitas</div></div>
+      <div class="kit"><div class="kn">Kit 2 · Bulanan</div><h4>📏 Growth &amp; Milestone Monitor</h4><p>Growth tracker standar WHO (deteksi dini stunting) + checklist milestone + ide stimulasi per usia dalam satu layar.</p><div class="use">Dipakai: sebulan sekali, setelah dari Posyandu</div></div>
+      <div class="kit"><div class="kn">Kit 3 · Dapur</div><h4>🍲 Dapur MPASI Premium</h4><p>30+ resep per usia + food diary &amp; pelacak alergi + meal planner mingguan dengan daftar belanja otomatis.</p><div class="use">Dipakai: saat menyusun menu &amp; mengenalkan bahan baru</div></div>
+      <div class="kit"><div class="kn">Kit 4 · Darurat</div><h4>🚨 Safety &amp; Emergency Kit</h4><p>Checklist tanda bahaya dengan keputusan instan (observasi / dokter 24 jam / IGD sekarang) + protokol alergi 3-Day Wait.</p><div class="use">Dipakai: saat bayi sakit atau ada gejala mencurigakan</div></div>
+      <div class="kit wide"><div class="kn">Kit 5 · Upgrade Ilmu</div><h4>🎓 MPASI Academy</h4><p>Quiz mitos vs fakta + glosarium 40+ istilah. Selesaikan quiz dengan skor ≥80% dan dapatkan <b>Sertifikat "Bunda Siap MPASI"</b> yang bisa dibagikan.</p><div class="use">Dipakai: di awal (tes pemahaman) &amp; setelah selesai membaca buku ini</div></div>
+    </div>
+
+    <div class="co co-ok"><span class="ct">Mulai Hari Ini</span>Langkah pertama: buka <b>Kit 2</b> untuk cek status pertumbuhan anak sekarang. Langkah kedua: susun jadwal di <b>Kit 1</b>. 1000 hari pertama anak tidak bisa diulang — beri yang terbaik mulai hari ini. 💛</div>
+  </div>
+</section>
+
+<div class="end inner">
+  <div class="mark">MPASI Cegah Stunting</div>
+  <div class="sm">Selesai · 10 Bab · Panduan MPASI 6–24 Bulan · Berbasis WHO &amp; IDAI</div>
+</div>
+
+</main>
+<script>
+(function(){
+  var bar=document.getElementById('bar');
+  window.addEventListener('scroll',function(){var h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+  var sb=document.getElementById('sb'),ov=document.getElementById('ov'),btn=document.getElementById('menuBtn');
+  function toggle(open){sb.classList.toggle('open',open);ov.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);btn.textContent=open?'✕':'☰';}
+  btn.addEventListener('click',function(){toggle(!sb.classList.contains('open'));});
+  ov.addEventListener('click',function(){toggle(false);});
+  var links=document.querySelectorAll('.rail a');
+  links.forEach(function(a){a.addEventListener('click',function(){if(window.innerWidth<=900)toggle(false);});});
+  var secs=[].slice.call(document.querySelectorAll('.ch'));
+  function spy(){var y=window.scrollY+140,cur=null;secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id;});links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
+</body></html>
